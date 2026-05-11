@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import useCartStore from "../../../store/cartStore";
 
 export default function Checkout() {
-  // TODO ESTUDIANTE:
+  //  ESTUDIANTE:
   // Este checkout debe mantenerse simulado en el taller.
   // Solo personaliza estilos, estructura visual y textos.
   const items = useCartStore((state) => state.items);

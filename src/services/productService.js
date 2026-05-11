@@ -1,18 +1,15 @@
-import MOCK_PRODUCTS from "../mockdata/mock_products";
-
 export const getProducts = async () => {
-  // TODO ESTUDIANTE:
-  // Reemplaza este retorno local por FakeStore API.
-  // Ejemplo esperado: GET https://fakestoreapi.com/products
-  return [...MOCK_PRODUCTS].sort((a, b) => Number(a.id) - Number(b.id));
+  const response = await fetch('https://fakestoreapi.com/products');
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return await response.json();
 };
 
 export const getProductById = async (id) => {
-  // TODO ESTUDIANTE:
-  // Reemplaza esta busqueda local por FakeStore API.
-  // Ejemplo esperado: GET https://fakestoreapi.com/products/{id}
-  const product = MOCK_PRODUCTS.find(
-    (item) => Number(item.id) === Number(id),
-  );
-  return product ?? null;
+  const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return await response.json();
 };

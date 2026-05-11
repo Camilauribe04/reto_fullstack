@@ -2,13 +2,13 @@ import { useEffect, useMemo, useState } from "react";
 import ProductCard from "../../molecules/ProductCard";
 import { getProducts } from "../../../services/productService";
 
-const ITEMS_PER_PAGE = 4;
-// TODO ESTUDIANTE: ajusta items por pagina y mejora UX de filtros/categorias.
-
 export default function Gallery() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState(""); const [selectedCategory, setSelectedCategory] = useState("all");
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+  const [itemsPerPage, setItemsPerPage] = useState(4);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
@@ -18,22 +18,55 @@ export default function Gallery() {
     });
   }, []);
 
-  const filteredProducts = useMemo(() => {
-    // TODO ESTUDIANTE: extender busqueda por categoria y precio.
-    const normalized = searchTerm.trim().toLowerCase();
-    if (!normalized) return products;
+  const categories = useMemo(() => {
+    const uniqueCategories = [
+      ...new Set(products.map(product => product.category))
+    ];
 
+    return ["all", ...uniqueCategories];
+  }, [products]);
+
+  const filteredProducts = useMemo(() => {
+    const normalized = searchTerm.trim().toLowerCase();
     return products.filter((product) => {
-      return (
+      const matchesSearch =
         product.title.toLowerCase().includes(normalized) ||
-        product.description.toLowerCase().includes(normalized)
+        product.description.toLowerCase().includes(normalized);
+      const matchesCategory =
+        selectedCategory === "all" ||
+        product.category === selectedCategory;
+      const matchesMinPrice =
+        minPrice === "" ||
+        product.price >= Number(minPrice);
+      const matchesMaxPrice =
+        maxPrice === "" ||
+        product.price <= Number(maxPrice);
+      return (
+        matchesSearch &&
+        matchesCategory &&
+        matchesMinPrice &&
+        matchesMaxPrice
       );
     });
-  }, [products, searchTerm]);
 
-  const totalPages = Math.max(1, Math.ceil(filteredProducts.length / ITEMS_PER_PAGE));
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const visibleProducts = filteredProducts.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  }, [
+    products,
+    searchTerm,
+    selectedCategory,
+    minPrice,
+    maxPrice
+  ]);
+
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filteredProducts.length / itemsPerPage)
+  );
+  const startIndex =
+    (currentPage - 1) * itemsPerPage;
+  const visibleProducts = filteredProducts.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -69,6 +102,71 @@ export default function Gallery() {
           className="w-full sm:w-80 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-purple-500"
         />
       </div>
+      <div className="flex flex-wrap gap-4 mt-4">
+        <select
+          value={selectedCategory}
+          onChange={(e) => {
+            setSelectedCategory(e.target.value);
+            setCurrentPage(1);
+          }}
+          className="px-4 py-2 border rounded-lg"
+        >
+          {categories.map(category => (
+            <option
+              key={category}
+              value={category}
+            >
+              {category}
+            </option>
+          ))}
+        </select>
+        <input
+          type="number"
+          placeholder="Precio mínimo"
+          value={minPrice}
+          onChange={(e) => {
+            setMinPrice(e.target.value);
+            setCurrentPage(1);
+          }}
+          className="px-4 py-2 border rounded-lg"
+        />
+        <input
+          type="number"
+          placeholder="Precio máximo"
+          value={maxPrice}
+          onChange={(e) => {
+            setMaxPrice(e.target.value);
+            setCurrentPage(1);
+          }}
+          className="px-4 py-2 border rounded-lg"
+        />
+        <select
+          value={itemsPerPage}
+          onChange={(e) => {
+            setItemsPerPage(Number(e.target.value));
+            setCurrentPage(1);
+          }}
+          className="px-4 py-2 border rounded-lg"
+        >
+          <option value={4}>4 por página</option>
+          <option value={8}>8 por página</option>
+          <option value={12}>12 por página</option>
+        </select>
+        <button
+          type="button"
+          onClick={() => {
+            setSearchTerm("");
+            setSelectedCategory("all");
+            setMinPrice("");
+            setMaxPrice("");
+            setItemsPerPage(4);
+            setCurrentPage(1);
+          }}
+          className="px-4 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 transition"
+        >
+          Limpiar filtros
+        </button>
+      </div>
 
       {filteredProducts.length === 0 ? (
         <div className="bg-white border border-gray-200 rounded-xl p-8 text-center text-gray-500">
@@ -98,11 +196,10 @@ export default function Gallery() {
                   key={page}
                   type="button"
                   onClick={() => goToPage(page)}
-                  className={`w-9 h-9 rounded-lg text-sm font-medium border ${
-                    page === currentPage
-                      ? "border-purple-600 bg-purple-600 text-white"
-                      : "border-gray-300 hover:bg-gray-50"
-                  }`}
+                  className={`w-9 h-9 rounded-lg text-sm font-medium border ${page === currentPage
+                    ? "border-purple-600 bg-purple-600 text-white"
+                    : "border-gray-300 hover:bg-gray-50"
+                    }`}
                 >
                   {page}
                 </button>
