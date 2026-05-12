@@ -16,13 +16,13 @@ export default function Cart() {
   const [couponError, setCouponError] = useState("");
 
   const subtotal = getTotalPrice();
-  
+
   // Shipping: Free over $100, else $15
   const shipping = subtotal > 100 || subtotal === 0 ? 0 : 15;
-  
+
   // Tax: 19% IVA
   const tax = subtotal * 0.19;
-  
+
   const handleApplyCoupon = () => {
     if (couponCode.toUpperCase() === "DESC10") {
       setDiscount(subtotal * 0.10);
@@ -66,7 +66,7 @@ export default function Cart() {
       <h2 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-500 mb-8">
         Tu Carrito de Compras
       </h2>
-      
+
       <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8">
         <div className="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden flex flex-col gap-1 p-2">
           {items.map(({ product, quantity }) => {
@@ -86,7 +86,7 @@ export default function Cart() {
                     ${itemSubtotal.toFixed(2)}
                   </p>
                 </div>
-                
+
                 <div className="flex flex-col items-center gap-4">
                   <div className="flex items-center gap-1 bg-gray-100 rounded-xl p-1">
                     <button
@@ -121,7 +121,7 @@ export default function Cart() {
         <aside className="h-fit flex flex-col gap-6">
           <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-8">
             <h3 className="text-2xl font-bold text-gray-900 mb-6 border-b border-gray-100 pb-4">Resumen del pedido</h3>
-            
+
             <div className="space-y-4 mb-6">
               <div className="flex justify-between text-gray-600 font-medium">
                 <span>Subtotal ({items.length} items)</span>
@@ -139,7 +139,7 @@ export default function Cart() {
                 <span>Impuestos (19%)</span>
                 <span>${tax.toFixed(2)}</span>
               </div>
-              
+
               {discount > 0 && (
                 <div className="flex justify-between text-green-500 font-bold bg-green-50 p-3 rounded-lg">
                   <span>Descuento aplicado</span>

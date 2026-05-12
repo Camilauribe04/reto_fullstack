@@ -87,7 +87,7 @@ export default function Checkout() {
           className="bg-white border border-gray-100 shadow-sm rounded-3xl p-8 lg:p-10"
         >
           <h3 className="text-2xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-100">Información de Envío</h3>
-          
+
           <div className="space-y-6">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">Nombre completo</label>
@@ -101,7 +101,7 @@ export default function Checkout() {
                 className="w-full px-5 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-shadow bg-gray-50 focus:bg-white"
               />
             </div>
-            
+
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">Correo Electrónico</label>
               <input
@@ -114,7 +114,7 @@ export default function Checkout() {
                 className="w-full px-5 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-shadow bg-gray-50 focus:bg-white"
               />
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="md:col-span-2">
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Dirección de Entrega</label>
@@ -128,7 +128,7 @@ export default function Checkout() {
                   className="w-full px-5 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-shadow bg-gray-50 focus:bg-white"
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Ciudad</label>
                 <input
@@ -141,7 +141,7 @@ export default function Checkout() {
                   className="w-full px-5 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-shadow bg-gray-50 focus:bg-white"
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Código Postal</label>
                 <input
@@ -176,7 +176,7 @@ export default function Checkout() {
         <aside className="h-fit">
           <div className="bg-white border border-gray-100 shadow-sm rounded-3xl p-8">
             <h3 className="text-2xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-100">Tu Pedido</h3>
-            
+
             <div className="space-y-4 mb-6 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
               {items.map(({ product, quantity }) => (
                 <div key={product.id} className="flex gap-4 items-center">
@@ -193,7 +193,7 @@ export default function Checkout() {
                 </div>
               ))}
             </div>
-            
+
             <div className="space-y-3 pt-6 border-t border-gray-100 mb-6">
               <div className="flex justify-between text-gray-600">
                 <span>Subtotal</span>
