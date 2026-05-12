@@ -10,10 +10,10 @@ function ProductCard({ product }) {
 
     return (
         <Link to={`/product/${product.id}`} className="block border rounded-lg p-4 shadow-md w-[180px] m-2 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-            <ProductImage src={resolvedImage} alt={product.title}  />
+            <ProductImage src={resolvedImage} alt={product.title} />
             <ProductTitle title={product.title} />
             <ProductPrice price={product.price} />
-            <ProductRate rate={product.rate} />
+            <ProductRate rate={product.rating?.rate ?? product.rate ?? 0} />
         </Link>
     );
 }

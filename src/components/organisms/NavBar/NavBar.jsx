@@ -37,8 +37,8 @@ export default function NavBar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="flex items-center space-x-2 text-2xl font-bold hover:opacity-80 transition-opacity"
           >
             <span className="bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 bg-clip-text text-transparent">
@@ -51,11 +51,10 @@ export default function NavBar() {
             <li>
               <Link
                 to="/gallery"
-                className={`text-base font-medium transition-all duration-300 pb-2 border-b-2 ${
-                  isActive('/gallery')
-                    ? 'text-blue-600 border-blue-600'
-                    : 'text-gray-600 border-transparent hover:text-gray-900 hover:border-gray-300'
-                }`}
+                className={`text-base font-medium transition-all duration-300 pb-2 border-b-2 ${isActive('/gallery')
+                  ? 'text-blue-600 border-blue-600'
+                  : 'text-gray-600 border-transparent hover:text-gray-900 hover:border-gray-300'
+                  }`}
               >
                 Gallery
               </Link>
@@ -63,11 +62,10 @@ export default function NavBar() {
             <li>
               <Link
                 to="/cart"
-                className={`text-base font-medium transition-all duration-300 pb-2 border-b-2 ${
-                  isActive('/cart')
-                    ? 'text-blue-600 border-blue-600'
-                    : 'text-gray-600 border-transparent hover:text-gray-900 hover:border-gray-300'
-                }`}
+                className={`text-base font-medium transition-all duration-300 pb-2 border-b-2 ${isActive('/cart')
+                  ? 'text-blue-600 border-blue-600'
+                  : 'text-gray-600 border-transparent hover:text-gray-900 hover:border-gray-300'
+                  }`}
               >
                 Cart ({totalItems})
               </Link>
@@ -76,11 +74,10 @@ export default function NavBar() {
               <li>
                 <Link
                   to="/profile"
-                  className={`text-base font-medium transition-all duration-300 pb-2 border-b-2 ${
-                    isActive('/profile')
-                      ? 'text-blue-600 border-blue-600'
-                      : 'text-gray-600 border-transparent hover:text-gray-900 hover:border-gray-300'
-                  }`}
+                  className={`text-base font-medium transition-all duration-300 pb-2 border-b-2 ${isActive('/profile')
+                    ? 'text-blue-600 border-blue-600'
+                    : 'text-gray-600 border-transparent hover:text-gray-900 hover:border-gray-300'
+                    }`}
                 >
                   Profile
                 </Link>
@@ -90,11 +87,10 @@ export default function NavBar() {
                 <li>
                   <Link
                     to="/login"
-                    className={`text-base font-medium transition-all duration-300 pb-2 border-b-2 ${
-                      isActive('/login')
-                        ? 'text-blue-600 border-blue-600'
-                        : 'text-gray-600 border-transparent hover:text-gray-900 hover:border-gray-300'
-                    }`}
+                    className={`text-base font-medium transition-all duration-300 pb-2 border-b-2 ${isActive('/login')
+                      ? 'text-blue-600 border-blue-600'
+                      : 'text-gray-600 border-transparent hover:text-gray-900 hover:border-gray-300'
+                      }`}
                   >
                     Login
                   </Link>
@@ -102,11 +98,10 @@ export default function NavBar() {
                 <li>
                   <Link
                     to="/register"
-                    className={`text-base font-medium transition-all duration-300 pb-2 border-b-2 ${
-                      isActive('/register')
-                        ? 'text-blue-600 border-blue-600'
-                        : 'text-gray-600 border-transparent hover:text-gray-900 hover:border-gray-300'
-                    }`}
+                    className={`text-base font-medium transition-all duration-300 pb-2 border-b-2 ${isActive('/register')
+                      ? 'text-blue-600 border-blue-600'
+                      : 'text-gray-600 border-transparent hover:text-gray-900 hover:border-gray-300'
+                      }`}
                   >
                     Register
                   </Link>

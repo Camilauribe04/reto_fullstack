@@ -93,8 +93,8 @@ export default function ProductDetail() {
 
                             {/* Rating */}
                             <div className="flex items-center gap-2 mb-4">
-                                <div className="text-xl">{renderStars(product.rate)}</div>
-                                <span className="text-sm text-gray-500">({product.rate} / 5)</span>
+                                <div className="text-xl">{renderStars(product.rating?.rate ?? product.rate ?? 0)}</div>
+                                <span className="text-sm text-gray-500">({product.rating?.rate ?? product.rate ?? 0} / 5)</span>
                             </div>
 
                             {/* Price */}
@@ -134,11 +134,10 @@ export default function ProductDetail() {
                             {/* Add to cart button */}
                             <button
                                 onClick={handleAddToCart}
-                                className={`w-full py-3 rounded-xl font-semibold text-white text-lg transition-all duration-300 ${
-                                    added
-                                        ? 'bg-green-500 scale-95'
-                                        : 'bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 hover:opacity-90 hover:shadow-lg hover:shadow-purple-200 active:scale-95'
-                                }`}
+                                className={`w-full py-3 rounded-xl font-semibold text-white text-lg transition-all duration-300 ${added
+                                    ? 'bg-green-500 scale-95'
+                                    : 'bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 hover:opacity-90 hover:shadow-lg hover:shadow-purple-200 active:scale-95'
+                                    }`}
                             >
                                 {added ? '✓ Agregado al carrito' : 'Agregar al carrito'}
                             </button>

@@ -46,8 +46,6 @@ export const subscribeToAuthChanges = (callback) => {
 };
 
 export const loginUser = async (email, password) => {
-  // TODO ESTUDIANTE:
-  // Si cambias a backend real, valida credenciales por API y maneja token/sesion.
   const registeredUsers = getRegisteredUsers();
   const allUsers = [...MOCK_USERS, ...registeredUsers];
   const foundUser = allUsers.find(
@@ -66,8 +64,17 @@ export const loginUser = async (email, password) => {
 };
 
 export const registerFullUser = async (userData) => {
-  // TODO ESTUDIANTE:
-  // Agrega validaciones de formulario mas robustas (longitud, formato, etc).
+  // Validaciones
+  if (!userData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userData.email)) {
+    return { success: false, error: "El correo no tiene un formato válido." };
+  }
+  if (!userData.password || userData.password.length < 6) {
+    return { success: false, error: "La contraseña debe tener al menos 6 caracteres." };
+  }
+  if (!userData.name || userData.name.trim() === "") {
+    return { success: false, error: "El nombre es obligatorio." };
+  }
+
   const registeredUsers = getRegisteredUsers();
   const allUsers = [...MOCK_USERS, ...registeredUsers];
   const emailExists = allUsers.some(
@@ -75,7 +82,7 @@ export const registerFullUser = async (userData) => {
   );
 
   if (emailExists) {
-    return { success: false, error: "El email ya está registrado." };
+    return { success: false, error: "El correo ya está registrado." };
   }
 
   const newUser = {
@@ -96,8 +103,6 @@ export const registerFullUser = async (userData) => {
 };
 
 export const logoutUser = async () => {
-  // TODO ESTUDIANTE:
-  // Si usas backend real, invalida token/sesion en servidor aqui.
   localStorage.removeItem(LOGGED_IN_USER_KEY);
   notifyAuthChange();
   return { success: true };

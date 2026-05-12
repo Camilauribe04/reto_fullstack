@@ -19,15 +19,6 @@ Reto para practicar las habilidades de un desarrollador fullstack moderno.
 - **Trabajo del estudiante**: estilos, integración de FakeStore API, responsive y mejoras propias.
 - **Firebase es bonus**: solo si quieres extender el reto.
 
-### TODO ESTUDIANTE (ruta sugerida)
-
-1. Personalizar estilos, layout y experiencia visual.
-2. Reemplazar `src/services/productService.js` para consumir FakeStore API.
-3. Extender busqueda, filtros y paginacion en `Gallery`.
-4. Mejorar carrito (cupones, impuestos, envio).
-5. Mantener checkout simulado, cambiando solo estilos y textos.
-6. Implementar mejoras propias y desplegar.
-
 ## <img src="https://flagcdn.com/w40/co.png" width="30"> Menú de contenido
 
 ### Instrucciones en Español
